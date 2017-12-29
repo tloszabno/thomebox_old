@@ -12,7 +12,7 @@ export default class FileListView extends React.Component {
     this.state = {
       folders: [
         {
-          id: '121212',
+          id: '7767',
           name: 'd1',
           size: null,
           modified: '2017-12-28 18:59'
@@ -85,6 +85,7 @@ export default class FileListView extends React.Component {
   }
 
   render () {
+    console.log(this.props.id)
     return (
       <Table className={"header-fixed"}>
         <Header/>
