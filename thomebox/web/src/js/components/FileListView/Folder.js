@@ -5,7 +5,7 @@ import DownloadButton from './DownloadButton'
 export default class Folder extends React.Component {
   render () {
     return (
-      <tr>
+      <tr className={"clickable-row"}>
         <td>
           <Glyphicon glyph={"folder-open"}/><span className={"list-item-name"}>{this.props.folder.name}</span>
         </td>

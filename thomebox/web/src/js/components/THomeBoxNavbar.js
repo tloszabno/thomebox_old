@@ -1,27 +1,29 @@
 import React from 'react';
-import {Nav, Navbar,NavItem} from 'react-bootstrap';
+import {Nav, Navbar, NavItem} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 
-
-
-export default class THomeBoxNavbar extends React.Component{
-  constructor(){
+export default class THomeBoxNavbar extends React.Component {
+  constructor () {
     super();
     this.state = {
       appTitle: "tHomeBox"
     };
   }
-  render (){
+
+  render () {
     return (
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#">{this.state.appTitle}</a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
+          <LinkContainer to="/">
+            <Navbar.Brand>{this.state.appTitle}</Navbar.Brand>
+          </LinkContainer>
+          <Navbar.Toggle/>
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="#">File</NavItem>
+            <LinkContainer to="/settings">
+              <NavItem eventKey={2}>Settings</NavItem>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
