@@ -4,12 +4,18 @@ import {Nav, Navbar,NavItem} from 'react-bootstrap';
 
 
 export default class THomeBoxNavbar extends React.Component{
+  constructor(){
+    super();
+    this.state = {
+      appTitle: "tHomeBox"
+    };
+  }
   render (){
     return (
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">tHomeBox</a>
+            <a href="#">{this.state.appTitle}</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

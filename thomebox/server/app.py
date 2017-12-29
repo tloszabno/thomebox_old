@@ -2,12 +2,15 @@
 from flask import Flask, render_template
 import time
 
+
 app = Flask(__name__, static_folder='../web/dist', template_folder='../web')
+
 
 @app.route("/")
 def index():
     version = time.time()
     return render_template('index.html', version=version)
+
 
 @app.route("/state")
 def hello():
