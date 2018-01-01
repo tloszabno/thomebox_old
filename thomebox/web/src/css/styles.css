@@ -1,8 +1,22 @@
 #app{
     width: 90%;
     margin: auto;
+    height: 90%;
 }
 
+
+
+/*FIX wrong table layout*/
 .list-item-name{
     padding-left: 10px;
 }
+.react-bs-table-container{
+    height: auto !important;
+}
+.react-bs-container-body{
+    height: auto !important;
+}
+.react-bs-table-bordered{
+    height: auto !important;
+}
+/*end of fix*/
