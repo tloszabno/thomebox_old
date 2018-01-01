@@ -1,22 +1,68 @@
-#app{
-    width: 90%;
-    margin: auto;
-    height: 90%;
+#app {
 }
 
+body {
+    background-color: #404551;
+    color: #D3DAE2;
+}
 
+/*explorer*/
+.node-container {
+    margin: 1em;
+
+}
+
+.node-box {
+    display: inline-block;
+    margin: 0.75em;
+}
+
+.node-box > .node-icon {
+    display: block;
+    margin: 0.2em;
+    background-size: 96px;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+}
+
+.node-box > .node-icon-folder {
+    background-image: url("../icons/folder.svg");
+}
+
+.node-box > .node-icon-file {
+    background-image: url("../icons/file.svg");
+}
+
+.node-box > .node-title {
+    color: #D3DAE2;
+    text-align: center;
+    margin: auto;
+    display: block;
+    cursor: pointer;
+}
+
+.node-container > .selected {
+    background: #16A084;
+}
+
+/* END explorer */
 
 /*FIX wrong table layout*/
-.list-item-name{
+.list-item-name {
     padding-left: 10px;
 }
-.react-bs-table-container{
+
+.react-bs-table-container {
     height: auto !important;
 }
-.react-bs-container-body{
+
+.react-bs-container-body {
     height: auto !important;
 }
-.react-bs-table-bordered{
+
+.react-bs-table-bordered {
     height: auto !important;
 }
+
 /*end of fix*/

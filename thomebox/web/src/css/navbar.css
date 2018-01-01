@@ -1,0 +1,15 @@
+.glyphicon-cog {
+    top: 3px;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    background-color: #222222;
+}
+
+.dropdown-menu{
+    background: #222222;
+}
+
+.dropdown-menu>li>a{
+    color: #9D9D9D;
+}

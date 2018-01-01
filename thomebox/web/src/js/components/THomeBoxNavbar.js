@@ -1,5 +1,5 @@
 import React from 'react';
-import {Nav, Navbar, NavItem} from 'react-bootstrap';
+import {Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 
 export default class THomeBoxNavbar extends React.Component {
@@ -20,9 +20,12 @@ export default class THomeBoxNavbar extends React.Component {
           <Navbar.Toggle/>
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav>
+          <Nav pullRight>
+            <NavDropdown eventKey={3} title="Administrator" id="basic-nav-dropdown">
+              <MenuItem eventKey={3.1}>Logout</MenuItem>
+            </NavDropdown>
             <LinkContainer to="/settings">
-              <NavItem eventKey={2}>Settings</NavItem>
+              <NavItem eventKey={4}><Glyphicon glyph={"cog"}/></NavItem>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>
