@@ -9,12 +9,13 @@ body {
 /*explorer*/
 .node-container {
     margin: 1em;
-
+    z-index: 0;
 }
 
 .node-box {
     display: inline-block;
     margin: 0.75em;
+    z-index: 1;
 }
 
 .node-box > .node-icon {
@@ -24,6 +25,28 @@ body {
     width: 96px;
     height: 96px;
     cursor: pointer;
+}
+
+.node-box > .node-thumb {
+    width: 96px;
+    height: 96px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+
+.node-box > .node-thumb > .node-thumb-helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.node-box > .node-thumb > img {
+    width: 96px;
+    max-height: 96px;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px;
 }
 
 .node-box > .node-icon-folder {

@@ -10,9 +10,26 @@ export default class NodeElement extends React.Component {
     }
 
     return (
-      <div className={nodeBoxClasses.join(' ')} onClick={()=>onClick(node)} onDoubleClick={()=>onDoubleClick(node)}>
-        <span className={"node-icon node-icon-" + node.type}></span>
+      <div className={nodeBoxClasses.join(' ')}
+           onClick={() => onClick(node)}
+           onDoubleClick={() => onDoubleClick(node)}>
+
+        {node.icon && (
+          <span className={"node-thumb"}>
+            <span className={"node-thumb-helper"}></span>
+            <img src={"data:image/jpg;base64," + node.icon}/>
+          </span>
+        )
+        }
+
+        {
+          !node.icon && (
+            <span className={"node-icon node-icon-" + node.type}></span>
+          )
+        }
+
         <span className="node-title">{node.name}</span>
+
       </div>
     )
   }
