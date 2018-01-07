@@ -3,7 +3,10 @@ import {Route, Switch} from "react-router-dom";
 import Explorer from './Explorer'
 import Settings from './Settings'
 
+
+
 export default class Main extends React.Component {
+
   render () {
     return (
       <div className={"main-container"}>

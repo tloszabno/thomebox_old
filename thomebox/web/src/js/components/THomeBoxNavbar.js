@@ -2,30 +2,37 @@ import React from 'react';
 import {Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import BreadcrumpItem from './THomeBoxNavbar/BreadcrumpItem'
+import {connect} from "react-redux"
+import explorer from '../reducers/explorerReducer'
 
+@connect((store) => {
+  return {
+    breadcrumpItems: store.explorer.breadcrumpItems
+  }
+})
 export default class THomeBoxNavbar extends React.Component {
   constructor () {
     super();
     this.state = {
-      appTitle: "tHomeBox",
-      breadcrumpItems: [
-        { id: 1, name: 'Home', icon:'home' }, { id: 2, name: 'Photos2' }, { id: 3, name: 'Holiday 2017' }
-      ]
+      appTitle: "tHomeBox"
     };
   }
 
   render () {
+    console.log("props", this.props)
+    const { breadcrumpItems } = this.props
+    const { appTitle } = this.state
     return (
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <LinkContainer to="/">
-            <Navbar.Brand>{this.state.appTitle}</Navbar.Brand>
+            <Navbar.Brand>{appTitle}</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle/>
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav className="breadcrumb-nav">
-            { this.state.breadcrumpItems.map( (el) => <BreadcrumpItem key={el.id} folder={el}/>) }
+            {breadcrumpItems.map((el) => <BreadcrumpItem key={el.id} folder={el}/>)}
           </Nav>
           <Nav pullRight>
             <NavDropdown eventKey={3} title="Administrator" id="basic-nav-dropdown">

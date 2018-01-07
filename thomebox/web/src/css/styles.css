@@ -63,6 +63,8 @@ body {
     margin: auto;
     display: block;
     cursor: pointer;
+    word-break: break-all;
+    width: 96px;
 }
 
 .node-container > .selected {

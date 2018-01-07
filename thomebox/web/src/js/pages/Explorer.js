@@ -1,98 +1,60 @@
 import React from 'react';
 import NodeElement from '../components/NodeElement'
+import {connect} from 'react-redux'
+import {changeCurrentFolderTo, changeCurrentFolderToHome} from "../actions/explorerActions"
 
 const EMPTY_SET = new Set()
 const EXPLORER_CLASS = "node-container"
 
+@connect((store) => {
+  return {
+    elements: store.explorer.elements
+  }
+})
 export default class Explorer extends React.Component {
   constructor () {
     super()
-    this.state = {
-      elements: [
-        {
-          id: 1,
-          name: 'Folder1',
-          type: 'folder',
-        },
-        {
-          id: 2,
-          name: 'Folder2',
-          type: 'folder',
-        },
-        {
-          id: 3,
-          name: 'Folder3',
-          type: 'folder',
-        },
-        {
-          id: 4,
-          name: 'Folder4',
-          type: 'folder',
-        },
-        {
-          id: 5,
-          name: 'Folder5',
-          type: 'folder',
-        },
-        {
-          id: 6,
-          name: 'Folder6',
-          type: 'folder',
-        },
-        {
-          id: 7,
-          name: 'Folder7',
-          type: 'folder',
-        },
-        {
-          id: 8,
-          name: 'Folder8',
-          type: 'folder',
-        },
-        {
-          id: 9,
-          name: 'file.jpg',
-          type: 'file',
-        },
-        {
-          id: 10,
-          name: 'file2.jpg',
-          type: 'file',
-        },
-        {
-          id: 11,
-          name: 'file3.jpg',
-          type: 'file',
-        },
-        {
-          id: 12,
-          name: 'file12.jpg',
-          type: 'file',
-        },
-        {
-          id: 13,
-          name: 'file3.jpg',
-          type: 'file',
-        },
-        {
-          id: 14,
-          name: 'file4.jpg',
-          type: 'file',
-        },
-        {
-          id: 15,
-          name: 'file5.jpg',
-          type: 'file'
-        }
-      ],
-      selectedElements: new Set([ 15 ])
-    };
+    this.state = { selectedElements: new Set() }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.idChanged(nextProps)) {
+      this.loadFolder(nextProps.match.params.id)
+    }
+  }
+
+  componentWillMount () {
+     this.loadFolder()
+  }
+
+  idChanged(nextProps){
+    const nextId = nextProps.match.params.id
+    let current = this.getCurrentId()
+
+    return nextId !== current
+  }
+
+  getCurrentId () {
+    let current = -1
+    try {
+      current = this.props.match.params.id
+    } catch (e) {
+    }
+    return current
+  }
+
+  loadFolder (folderId = -1) {
+    if (folderId !== -1) {
+      this.props.dispatch(changeCurrentFolderTo(folderId))
+    } else {
+      this.props.dispatch(changeCurrentFolderToHome())
+    }
   }
 
   render () {
     return (
       <div className={EXPLORER_CLASS} onClick={(e) => this.emptySpaceClicked(e)}>
-        {this.state.elements.map((el) =>
+        {this.props.elements.map((el) =>
           (
             <NodeElement key={el.id} node={el} selected={this.state.selectedElements.has(el.id)}
                          onClick={this.elementClicked.bind(this)}
@@ -116,8 +78,7 @@ export default class Explorer extends React.Component {
   elementDoubleClicked (node) {
     this.elementClicked(node)
     if (node.type == 'folder') {
-      console.log("going to folder ", node.id)
-      //handle open folder
+      this.props.history.push('/folder/' + node.id);
     } else if (node.type == 'file') {
       //handle open file
     }
