@@ -12,6 +12,14 @@ export function changeCurrentFolderTo (folderId) {
       .catch((err) => {
         dispatch({ type: "FETCH_FOLDER_REJECTED", payload: err })
       })
+
+    axios.get("/breadcrump/" + folderId)
+      .then((response) => {
+        dispatch({ type: "FETCH_BREADCRUMP_FINISHED", payload: response.data })
+      })
+      .catch((err) => {
+        dispatch({ type: "FETCH_BREADCRUMP_REJECTED", payload: err })
+      })
   }
 }
 

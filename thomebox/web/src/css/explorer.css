@@ -1,0 +1,65 @@
+.node-container {
+    margin: 1em;
+    z-index: 0;
+}
+
+.node-box {
+    display: inline-block;
+    margin: 0.75em;
+    z-index: 1;
+    vertical-align: top;
+}
+
+.node-box > .node-icon {
+    display: block;
+    margin: 0.2em;
+    background-size: 128px;
+    width: 128px;
+    height: 128px;
+    cursor: pointer;
+}
+
+.node-box > .node-thumb {
+    width: 128px;
+    height: 128px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    text-align:center;
+}
+
+.node-box > .node-thumb > .node-thumb-helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.node-box > .node-thumb > img {
+    max-width: 128px;
+    max-height: 128px;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.node-box > .node-icon-folder {
+    background-image: url("../icons/folder.svg");
+}
+
+.node-box > .node-icon-file {
+    background-image: url("../icons/file.svg");
+}
+
+.node-box > .node-title {
+    color: #D3DAE2;
+    text-align: center;
+    margin: auto;
+    display: block;
+    cursor: pointer;
+    word-break: break-all;
+    width: 128px;
+}
+
+.node-container > .selected {
+    background: #16A084;
+}

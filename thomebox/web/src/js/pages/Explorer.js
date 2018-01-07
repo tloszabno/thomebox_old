@@ -24,10 +24,10 @@ export default class Explorer extends React.Component {
   }
 
   componentWillMount () {
-     this.loadFolder()
+    this.loadFolder(this.getCurrentId())
   }
 
-  idChanged(nextProps){
+  idChanged (nextProps) {
     const nextId = nextProps.match.params.id
     let current = this.getCurrentId()
 
@@ -80,7 +80,7 @@ export default class Explorer extends React.Component {
     if (node.type == 'folder') {
       this.props.history.push('/folder/' + node.id);
     } else if (node.type == 'file') {
-      //handle open file
+      this.props.history.push('/file/' + node.id);
     }
   }
 

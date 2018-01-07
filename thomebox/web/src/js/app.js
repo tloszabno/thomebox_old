@@ -13,6 +13,7 @@ import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 import '../css/styles.css';
 import '../css/navbar.css';
+import '../css/explorer.css';
 
 const rootElement = document.getElementById('app');
 ReactDOM.render((

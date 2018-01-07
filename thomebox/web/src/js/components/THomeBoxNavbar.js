@@ -17,7 +17,6 @@ export default class THomeBoxNavbar extends React.Component {
       appTitle: "tHomeBox"
     };
   }
-
   render () {
     console.log("props", this.props)
     const { breadcrumpItems } = this.props

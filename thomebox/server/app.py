@@ -20,6 +20,10 @@ def index():
 def get_folder(id):
     return jsonify(explorerWebSLO.get_folder(id).to_json())
 
+@app.route('/breadcrump/<folder_id>')
+def get_breadcrump(folder_id):
+    return jsonify(explorerWebSLO.get_breadcrump_for(folder_id).to_json())
+
 
 @app.after_request
 def set_no_store_cache(response):

@@ -6,72 +6,7 @@ body {
     color: #D3DAE2;
 }
 
-/*explorer*/
-.node-container {
-    margin: 1em;
-    z-index: 0;
-}
 
-.node-box {
-    display: inline-block;
-    margin: 0.75em;
-    z-index: 1;
-}
-
-.node-box > .node-icon {
-    display: block;
-    margin: 0.2em;
-    background-size: 96px;
-    width: 96px;
-    height: 96px;
-    cursor: pointer;
-}
-
-.node-box > .node-thumb {
-    width: 96px;
-    height: 96px;
-    display: block;
-    position: relative;
-    cursor: pointer;
-}
-
-.node-box > .node-thumb > .node-thumb-helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
-.node-box > .node-thumb > img {
-    width: 96px;
-    max-height: 96px;
-    display: inline-block;
-    vertical-align: middle;
-    padding: 5px;
-}
-
-.node-box > .node-icon-folder {
-    background-image: url("../icons/folder.svg");
-}
-
-.node-box > .node-icon-file {
-    background-image: url("../icons/file.svg");
-}
-
-.node-box > .node-title {
-    color: #D3DAE2;
-    text-align: center;
-    margin: auto;
-    display: block;
-    cursor: pointer;
-    word-break: break-all;
-    width: 96px;
-}
-
-.node-container > .selected {
-    background: #16A084;
-}
-
-/* END explorer */
 
 /*FIX wrong table layout*/
 .list-item-name {
