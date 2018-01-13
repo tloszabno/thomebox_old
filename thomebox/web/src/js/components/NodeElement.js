@@ -1,8 +1,23 @@
 import React from 'react';
 
 export default class NodeElement extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      loadingThumb: false
+    }
+  }
+
   render () {
-    const { node, selected, onClick, onDoubleClick } = this.props
+    const { node, selected, onClick, onDoubleClick, fetchThumbnail } = this.props
+
+    if (node.fetchThumb && !this.state.loadingThumb) {
+      fetchThumbnail(node.id)
+      this.setState({
+        ...this.state,
+        loadingThumb: true
+      })
+    }
 
     const nodeBoxClasses = [ "node-box" ]
     if (selected) {

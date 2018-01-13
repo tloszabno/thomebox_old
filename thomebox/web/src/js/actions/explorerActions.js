@@ -8,6 +8,7 @@ export function changeCurrentFolderTo (folderId) {
     axios.get("/folder/" + folderId)
       .then((response) => {
         dispatch({ type: "FETCH_FOLDER_FINISHED", payload: response.data })
+
       })
       .catch((err) => {
         dispatch({ type: "FETCH_FOLDER_REJECTED", payload: err })
@@ -26,3 +27,19 @@ export function changeCurrentFolderTo (folderId) {
 export function changeCurrentFolderToHome () {
   return changeCurrentFolderTo(-1);
 }
+
+export function fetchThumbnail (id) {
+
+  return function (dispatch) {
+    dispatch({ type: "FETCH_THUMBNAIL" });
+
+    axios.get("/thumbnail/" + id)
+      .then((response) => {
+        dispatch({ type: "FETCH_THUMBNAIL_FINISHED", payload: response.data })
+      })
+      .catch((err) => {
+        dispatch({ type: "FETCH_THUMBNAIL_REJECTED", payload: err })
+      })
+  }
+}
+

@@ -1,7 +1,7 @@
 import React from 'react';
 import NodeElement from '../components/NodeElement'
 import {connect} from 'react-redux'
-import {changeCurrentFolderTo, changeCurrentFolderToHome} from "../actions/explorerActions"
+import {changeCurrentFolderTo, changeCurrentFolderToHome, fetchThumbnail} from "../actions/explorerActions"
 
 const EMPTY_SET = new Set()
 const EXPLORER_CLASS = "node-container"
@@ -58,7 +58,9 @@ export default class Explorer extends React.Component {
           (
             <NodeElement key={el.id} node={el} selected={this.state.selectedElements.has(el.id)}
                          onClick={this.elementClicked.bind(this)}
-                         onDoubleClick={this.elementDoubleClicked.bind(this)}/>)
+                         onDoubleClick={this.elementDoubleClicked.bind(this)}
+                         fetchThumbnail={this.fetchThumbnail.bind(this)}
+            />)
         )}
       </div>
     )
@@ -88,5 +90,9 @@ export default class Explorer extends React.Component {
     if (e.target.classList.contains(EXPLORER_CLASS)) {
       this.setState(Object.assign({}, this.state, { selectedElements: EMPTY_SET }))
     }
+  }
+
+  fetchThumbnail(id){
+    this.props.dispatch(fetchThumbnail(id))
   }
 }

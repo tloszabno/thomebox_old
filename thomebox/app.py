@@ -3,10 +3,9 @@ import time
 
 from flask import Flask, render_template, jsonify
 
-from slo.explorer import ExplorerWebSLO
+from server.beans import explorer_web_slo, breadcrump_web_slo, thumbnails_web_slo, workers
 
-explorerWebSLO = ExplorerWebSLO.ExplorerWebSLO()
-app = Flask(__name__, static_folder='../web/dist', template_folder='../web')
+app = Flask(__name__, static_folder='web/dist', template_folder='web')
 
 
 @app.route("/")
@@ -18,11 +17,17 @@ def index():
 @app.route('/folder', defaults={"id": None})
 @app.route('/folder/<id>')
 def get_folder(id):
-    return jsonify(explorerWebSLO.get_folder(id).to_json())
+    return jsonify(explorer_web_slo.get_folder(id).to_json())
+
 
 @app.route('/breadcrump/<folder_id>')
 def get_breadcrump(folder_id):
-    return jsonify(explorerWebSLO.get_breadcrump_for(folder_id).to_json())
+    return jsonify(breadcrump_web_slo.get_breadcrump_for(folder_id).to_json())
+
+
+@app.route('/thumbnail/<element_id>')
+def get_thumbnail(element_id):
+    return jsonify(thumbnails_web_slo.get_thumbnail(element_id).to_json())
 
 
 @app.after_request
@@ -33,4 +38,7 @@ def set_no_store_cache(response):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3674, debug=True)
+    try:
+        app.run(host='0.0.0.0', port=3674, debug=True, threaded=True)
+    finally:
+        workers.close()

@@ -1,3 +1,5 @@
+const NODE1_BEFORE_NODE2 = -1;
+const NODE1_AFTER_NODE2 = 1;
 const INITIAL_STATE = {
   breadcrumpItems: [
     { id: -1, name: 'Home', icon: 'home' }
@@ -9,8 +11,31 @@ const INITIAL_STATE = {
   loaded: false
 }
 
-const NODE1_BEFORE_NODE2 = -1;
-const NODE1_AFTER_NODE2 = 1;
+export default function reducer (state = INITIAL_STATE, action) {
+  console.log("explorer reducer fired with action", action, "got state", state)
+
+  switch (action.type) {
+    case "FETCH_FOLDER_FINISHED":
+      let elements = sortElements(action.payload.elements)
+      return {
+        ...state,
+        elements: elements,
+        currentFolderId: action.payload.currentFolderId
+      }
+    case "FETCH_BREADCRUMP_FINISHED":
+      return {
+        ...state,
+        breadcrumpItems: action.payload.breadcrumpItems
+      }
+    case "FETCH_THUMBNAIL_FINISHED":
+      let elementsWithThumbnail = updateThumbnail(state.elements, action.payload.thumbnail)
+      return {
+        ...state,
+        elements: elementsWithThumbnail
+      }
+  }
+  return state
+}
 
 function sortElements (elements) {
   elements.sort(function (node1, node2) {
@@ -19,28 +44,15 @@ function sortElements (elements) {
     }
     if (node2.type === 'folder' && node1.type !== 'folder') {
       return NODE1_AFTER_NODE2
-    }
 
+    }
     return node1.name.localeCompare(node2.name)
   })
   return elements
+
 }
 
-export default function reducer (state = INITIAL_STATE, action) {
-  console.log("explorer reducer fired with action", action, "got state", state)
-
-  switch (action.type) {
-    case "FETCH_FOLDER_FINISHED":
-      return {
-        ...state,
-        elements: sortElements(action.payload.elements),
-        currentFolderId: action.payload.currentFolderId
-      }
-    case "FETCH_BREADCRUMP_FINISHED":
-      return {
-        ...state,
-        breadcrumpItems: action.payload.breadcrumpItems
-      }
-  }
-  return state
+function updateThumbnail (elements, thumbnail) {
+  console.log("updateThumbnail", thumbnail)
+  return elements.map(el => el.id == thumbnail.id ? { ...el, icon: thumbnail.icon, fetchThumb: false } : { ...el })
 }
