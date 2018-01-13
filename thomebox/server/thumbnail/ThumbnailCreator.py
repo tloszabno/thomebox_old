@@ -25,6 +25,7 @@ def __create_internal__(element_path):
     image = __fix_orientation__(image)
     image.thumbnail(size, Image.ANTIALIAS)
     save_buffer = cStringIO.StringIO()
+    image = image.convert("RGB")
     image.save(save_buffer, format="JPEG", optimize=True, quality=35)
     img_str = base64.b64encode(save_buffer.getvalue())
     return img_str

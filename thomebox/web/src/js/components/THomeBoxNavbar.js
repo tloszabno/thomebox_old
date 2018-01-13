@@ -24,9 +24,7 @@ export default class THomeBoxNavbar extends React.Component {
     return (
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
-          <LinkContainer to="/">
             <Navbar.Brand>{appTitle}</Navbar.Brand>
-          </LinkContainer>
           <Navbar.Toggle/>
         </Navbar.Header>
         <Navbar.Collapse>
