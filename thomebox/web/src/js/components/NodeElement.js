@@ -17,7 +17,6 @@ export default class NodeElement extends React.Component {
         loadingThumb: true
       })
     }
-
   }
 
   render () {
@@ -27,7 +26,7 @@ export default class NodeElement extends React.Component {
     if (selected) {
       nodeBoxClasses.push('selected')
     }
-
+    // console.log("node=",node)
     return (
       <div className={nodeBoxClasses.join(' ')}
            onClick={() => onClick(node)}

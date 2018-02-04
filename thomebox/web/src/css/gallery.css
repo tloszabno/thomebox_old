@@ -1,0 +1,12 @@
+.image-gallery {
+    margin: 0 auto;
+    width: 90%;
+    transition: all 1s ease;
+}
+.thgallery{
+    background-color: #404551;
+}
+
+.image-gallery-slide-wrapper.left, .image-gallery-slide-wrapper.right{
+    width: 100%;
+}

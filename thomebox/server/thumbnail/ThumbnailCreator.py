@@ -19,6 +19,7 @@ class ThumbnailCreator(object):
             ".jpeg") or element_path.lower().endswith(".png"))
 
 
+# Refactor - move to image component
 def __create_internal__(element_path):
     size = 128, 128
     image = Image.open(element_path)
@@ -27,8 +28,9 @@ def __create_internal__(element_path):
     save_buffer = cStringIO.StringIO()
     image = image.convert("RGB")
     image.save(save_buffer, format="JPEG", optimize=True, quality=35)
-    img_str = base64.b64encode(save_buffer.getvalue())
-    return img_str
+    binary_data = save_buffer.getvalue()
+    img_str = base64.b64encode(binary_data)
+    return img_str, binary_data
 
 
 def __fix_orientation__(img):

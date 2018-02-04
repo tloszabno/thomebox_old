@@ -47,7 +47,6 @@ function sortElements (elements) {
     return node1.name.localeCompare(node2.name)
   })
   return elements
-
 }
 
 function updateThumbnail (elements, thumbnail) {
