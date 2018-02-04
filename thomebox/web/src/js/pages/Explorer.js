@@ -14,7 +14,10 @@ const EXPLORER_CLASS = "node-container"
 export default class Explorer extends React.Component {
   constructor () {
     super()
-    this.state = { selectedElements: new Set() }
+    this.state = {
+      selectedElements: new Set(),
+      fileToDownload: null
+    }
   }
 
   componentWillReceiveProps (nextProps) {
@@ -52,16 +55,24 @@ export default class Explorer extends React.Component {
   }
 
   render () {
+    const fileToDownload = this.state.fileToDownload
     return (
-      <div className={EXPLORER_CLASS} onClick={(e) => this.emptySpaceClicked(e)}>
-        {this.props.elements.map((el) =>
-          (
-            <NodeElement key={el.id} node={el} selected={this.state.selectedElements.has(el.id)}
-                         onClick={this.elementClicked.bind(this)}
-                         onDoubleClick={this.elementDoubleClicked.bind(this)}
-                         fetchThumbnail={this.fetchThumbnail.bind(this)}
-            />)
-        )}
+      <div>
+        {fileToDownload != null && (
+          <iframe hidden src={"file/" + fileToDownload}></iframe>
+        )
+        }
+
+        <div className={EXPLORER_CLASS} onClick={(e) => this.emptySpaceClicked(e)}>
+          {this.props.elements.map((el) =>
+            (
+              <NodeElement key={el.id} node={el} selected={this.state.selectedElements.has(el.id)}
+                           onClick={this.elementClicked.bind(this)}
+                           onDoubleClick={this.elementDoubleClicked.bind(this)}
+                           fetchThumbnail={this.fetchThumbnail.bind(this)}
+              />)
+          )}
+        </div>
       </div>
     )
   }
@@ -82,7 +93,15 @@ export default class Explorer extends React.Component {
     if (node.type == 'folder') {
       this.props.history.push('/folder/' + node.id);
     } else if (node.type == 'file') {
-      this.props.history.push('/file/' + node.id);
+      this.handleFileOpening(node);
+    }
+  }
+
+  handleFileOpening(node){
+    if( node.fileType === "image" ){
+      this.props.history.push('/gallery/' + node.id);
+    } else{
+      this.setState(Object.assign({}, this.state, { fileToDownload: node.id }))
     }
   }
 
@@ -92,7 +111,7 @@ export default class Explorer extends React.Component {
     }
   }
 
-  fetchThumbnail(id){
+  fetchThumbnail (id) {
     this.props.dispatch(fetchThumbnail(id))
   }
 }

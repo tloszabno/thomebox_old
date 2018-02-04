@@ -31,8 +31,15 @@ class ExplorerWebSLO(object):
             node_jto.name = element
             node_jto.type = 'folder' if os.path.isdir(element_path) else 'file'
             node_jto.fetch_thumb = should_have_thumbnail(element_path)
+            node_jto.file_type = "image" if should_have_thumbnail(element_path) else ""
             elements_jto.add(node_jto)
         return elements_jto
+
+    def get_stream_for_file(self, file_id):
+        path = self.uuid_db.get_path(file_id)
+        if not path:
+            return None, None
+        return open(path, "r"), os.path.basename(path)
 
 
 class ElementsJTO(object):
@@ -60,6 +67,7 @@ class NodeElementJTO(object):
         self.name = ""
         self.id = ""
         self.fetch_thumb = False
+        self.file_type = ""
 
     def to_json(self):
         # TODO: optimize append only not default values  to decrease size
@@ -68,5 +76,6 @@ class NodeElementJTO(object):
             "name": self.name,
             "type": self.type,
             "icon": self.icon,
-            "fetchThumb": self.fetch_thumb
+            "fetchThumb": self.fetch_thumb,
+            "fileType": self.file_type
         }

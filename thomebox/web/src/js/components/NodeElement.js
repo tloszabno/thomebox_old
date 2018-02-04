@@ -8,9 +8,8 @@ export default class NodeElement extends React.Component {
     }
   }
 
-  render () {
-    const { node, selected, onClick, onDoubleClick, fetchThumbnail } = this.props
-
+  componentWillMount () {
+    const { node, fetchThumbnail } = this.props
     if (node.fetchThumb && !this.state.loadingThumb) {
       fetchThumbnail(node.id)
       this.setState({
@@ -18,6 +17,11 @@ export default class NodeElement extends React.Component {
         loadingThumb: true
       })
     }
+
+  }
+
+  render () {
+    const { node, selected, onClick, onDoubleClick } = this.props
 
     const nodeBoxClasses = [ "node-box" ]
     if (selected) {

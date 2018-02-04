@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 import time
 
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, send_file
 
 from server.beans import explorer_web_slo, breadcrump_web_slo, thumbnails_web_slo, workers
 
@@ -18,6 +18,12 @@ def index():
 @app.route('/folder/<id>')
 def get_folder(id):
     return jsonify(explorer_web_slo.get_folder(id).to_json())
+
+
+@app.route('/file/<id>')
+def get_file(id):
+    stream, name = explorer_web_slo.get_stream_for_file(id)
+    return send_file(stream, as_attachment=True, attachment_filename=name)
 
 
 @app.route('/breadcrump/<folder_id>')

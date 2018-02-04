@@ -12,8 +12,6 @@ const INITIAL_STATE = {
 }
 
 export default function reducer (state = INITIAL_STATE, action) {
-  console.log("explorer reducer fired with action", action, "got state", state)
-
   switch (action.type) {
     case "FETCH_FOLDER_FINISHED":
       let elements = sortElements(action.payload.elements)
@@ -53,6 +51,5 @@ function sortElements (elements) {
 }
 
 function updateThumbnail (elements, thumbnail) {
-  console.log("updateThumbnail", thumbnail)
   return elements.map(el => el.id == thumbnail.id ? { ...el, icon: thumbnail.icon, fetchThumb: false } : { ...el })
 }

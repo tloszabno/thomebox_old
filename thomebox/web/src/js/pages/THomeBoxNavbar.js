@@ -1,9 +1,8 @@
 import React from 'react';
 import {Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import BreadcrumpItem from './THomeBoxNavbar/BreadcrumpItem'
+import BreadcrumpItem from '../components/THomeBoxNavbar/BreadcrumpItem'
 import {connect} from "react-redux"
-import explorer from '../reducers/explorerReducer'
 
 @connect((store) => {
   return {
@@ -18,7 +17,6 @@ export default class THomeBoxNavbar extends React.Component {
     };
   }
   render () {
-    console.log("props", this.props)
     const { breadcrumpItems } = this.props
     const { appTitle } = this.state
     return (

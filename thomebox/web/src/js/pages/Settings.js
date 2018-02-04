@@ -1,5 +1,5 @@
 import React from 'react';
-import THomeBoxNavbar from '../components/THomeBoxNavbar';
+import THomeBoxNavbar from './THomeBoxNavbar';
 import FileListView from '../components/FileListView'
 
 export default class Settings extends React.Component {
