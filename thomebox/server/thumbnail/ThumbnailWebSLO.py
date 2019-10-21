@@ -8,7 +8,7 @@ class ThumbnailWebSLO(object):
         if not path:
             return Thumbnail(element_id)
 
-        icon, binary = try_to_resolve_icon(path, self.thumbnail_creator)
+        icon, _ = try_to_resolve_icon(path, self.thumbnail_creator)
         return Thumbnail(element_id, icon)
 
 

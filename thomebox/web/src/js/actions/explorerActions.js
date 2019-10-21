@@ -8,7 +8,6 @@ export function changeCurrentFolderTo (folderId) {
     axios.get("/folder/" + folderId)
       .then((response) => {
         dispatch({ type: "FETCH_FOLDER_FINISHED", payload: response.data })
-
       })
       .catch((err) => {
         dispatch({ type: "FETCH_FOLDER_REJECTED", payload: err })
