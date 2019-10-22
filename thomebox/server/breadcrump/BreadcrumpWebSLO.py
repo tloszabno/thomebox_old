@@ -28,6 +28,7 @@ class BreadcrumpWebSLO(object):
             breadcrump_element = BreadcrumpElementJTO()
             breadcrump_element.id = self.uuid_repository.get_uuid(current_path)
             breadcrump_element.name = element
+            print("adding " + str(breadcrump_element.to_json()))
             breadcrump.add(breadcrump_element)
 
         return breadcrump

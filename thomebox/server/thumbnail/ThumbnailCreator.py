@@ -10,6 +10,7 @@ class ThumbnailCreator(object):
         self.workers = workers
 
     def create(self, element_path):
+        return __create_internal__(element_path)
         return self.workers.run(__create_internal__, (element_path,))
 
     @staticmethod

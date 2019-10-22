@@ -62,6 +62,6 @@ def set_no_store_cache(response):
 
 if __name__ == '__main__':
     try:
-        app.run(host='0.0.0.0', port=3674, debug=True, threaded=True)
+        app.run(host='0.0.0.0', port=3674, debug=True)
     finally:
         workers.close()
